@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+
+{% block page_title %}Document{% endblock %}
+
+{% block content %}
+{% include "./inlcudes/header.html" with active_page="variable inside include for MONTH page"%}
+
+        <h1>Header One</h1>
+        <h2>Header Two</h2>
+        <p>{{ month_name|title }}</p>
+        {% if text is not None %}
+            <p>{{ text|title }}</p>
+        {% else %}
+            <p>There is no data for this month</p>
+        {% endif %}
+        <br> <br> <br>
+        <h2>from python funciton</h2>
+        {{ py_funct }}
+{% endblock %}
+
+
