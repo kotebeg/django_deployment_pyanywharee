@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from django.template.loader import render_to_string
 
+print('views file started')
 
 monthly_challange = {
     'january':'from january',
@@ -56,4 +57,4 @@ def get_month_by_name(request, month):
         except:
             raise Http404()
 
-
+print('views file loaded')
