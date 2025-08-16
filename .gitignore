@@ -1,3 +1,70 @@
 scripts.sh
 requirements.txt
 myenv_django
+app1/__pycache__/
+app26/__pycache__/
+app27/__pycache__/
+labProjcets/__pycache__/
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+# Ignore the SQLite database
+db.sqlite3
+app1/__pycache__/__init__.cpython-312.pyc
+app1/__pycache__/admin.cpython-312.pyc
+app1/__pycache__/apps.cpython-312.pyc
+app1/__pycache__/models.cpython-312.pyc
+app1/__pycache__/urls.cpython-312.pyc
+app1/__pycache__/views.cpython-312.pyc
+app1/migrations/__pycache__/__init__.cpython-312.pyc
+labProjcets/settings.py
+labProjcets/settings.py
+app1/migrations/__pycache__/__init__.cpython-312.pyc
+
+
+
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Environments
+.venv/
+venv/
+env/
+
+# Django
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+
+# Env vars / secrets
+.env
+.env.*
+*.env
+
+# Logs
+*.log
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Tests / tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Frontend (if applicable)
+node_modules/
+dist/
+build/
