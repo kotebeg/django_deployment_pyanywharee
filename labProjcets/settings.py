@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!zyu28_=$g#hlrfr)(p*1ty(%3@1j#p0@tkmzh6b0x0zz#*@6w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["kotebeg.pythonanywhere.com"]
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app26',
     'app27',
+    'app1',
 ]
 
 MIDDLEWARE = [
@@ -121,9 +122,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Default primary key field type
-STATICFILES_DIRS = [
-  BASE_DIR / 'static'
-  ]
+
+
+# STATICFILES_DIRS = [
+#   BASE_DIR / 'static'
+#   ]
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
