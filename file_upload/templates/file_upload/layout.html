@@ -14,20 +14,15 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    {% comment %} <title>Signin Template · Bootstrap v5.3</title> {% endcomment %}
-    <title>sing-in</title>
+    <title>file upload</title>
 
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-    {% comment %} <script src="{% static 'file_upload/boostrap/assets/js/test.js' %}"></script> {% endcomment %}
-
-
     <link rel="stylesheet" href="{% static 'file_upload/boostrap/css/css@3.css' %}">
     <link rel="stylesheet" href="{% static 'file_upload/boostrap/assets/dist/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'file_upload/boostrap/css/sign-in.css' %}">
+
 
 </head>
 
@@ -140,9 +135,30 @@
 
 
 </style>
+    <style>
+        /* Custom styles for the sticky footer layout */
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1 0 auto;
+        }
+
+        .footer {
+            flex-shrink: 0;
+        }
+    </style>
 
 
-<body class="d-flex align-items-center py-4 bg-body-tertiary">
+<body class="bg-body-tertiary">
+  
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="check2" viewBox="0 0 16 16">
       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -216,6 +232,14 @@
 
 
     {% endblock %}
+
+      <footer class="footer mt-auto py-3 bg-body-tertiary border-top">
+        <div class="container text-center">
+            <span class="text-muted">
+                &copy; 2025 Demo Web Page. All Rights Reserved.
+            </span>
+        </div>
+    </footer>
 
     <script src="{% static 'file_upload/boostrap/assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 

@@ -141,8 +141,28 @@
 
 </style>
 
+    <style>
+        /* Custom styles for the sticky footer layout */
+        html,
+        body {
+            height: 100%;
+        }
 
-<body class="d-flex align-items-center py-4 bg-body-tertiary">
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1 0 auto;
+        }
+
+        .footer {
+            flex-shrink: 0;
+        }
+    </style>
+
+<body class="bg-body-tertiary">
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="check2" viewBox="0 0 16 16">
       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -216,6 +236,7 @@
 
 
     {% endblock %}
+
 
     <script src="{% static 'app1/boostrap/assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 
