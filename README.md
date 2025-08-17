@@ -1,5 +1,5 @@
 
 # django_deployment_pyanywharee
 for deployment
-<br>demo: [pythonanywhere deployment](https://kotebeg.pythonanywhere.com/app1/).
+<br>demo: [pythonanywhere deployment](https://kotebeg.pythonanywhere.com/login/).
 
