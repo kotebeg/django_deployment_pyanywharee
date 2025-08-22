@@ -23,4 +23,5 @@ urlpatterns = [
     path('app27/', include('app27.urls')),
     path('login/', include('app1.urls')),
     path('file_upload/', include('file_upload.urls')),
+    path('tfu/', include('table_file_upload.urls')),
 ]

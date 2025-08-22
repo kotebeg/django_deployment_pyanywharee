@@ -11,19 +11,19 @@ from django.urls import reverse
 # Create your views here.
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
-from .forms import csv_upload_form
+# from .forms import csv_upload_form
 
-def index(request):
+def file_upload_home(request):
         # # print()
         if not request.user.is_authenticated:
                 return HttpResponseRedirect(reverse("login"))
         else:
                 try:
-                        form = csv_upload_form()
-                        return render(request, 'file_upload/index.html', {
+                        # form = csv_upload_form()
+                        return render(request, 'table_file_upload/index.html', {
                         'var1': 'var_from_front',
-                        "form": form,
+
                         })
                 except:
                         print('--->- def index exception')
-                        return render(request, 'file_upload/index.html')
+                        return render(request, 'table_file_upload/index.html')
