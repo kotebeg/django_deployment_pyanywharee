@@ -13,9 +13,6 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
 
 def table_file_upload_index(request):
-    if request.user.is_authenticated:
-            return render(request, 'table_file_upload/home.html', {
-            'var1': 'var_from_front'
-            })
-    else:
-            return HttpResponseRedirect(reverse("login"))
+
+            return render(request, 'table_file_upload/home.html')
+
