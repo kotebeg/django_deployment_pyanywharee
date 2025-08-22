@@ -1,12 +1,14 @@
-{% extends "file_upload/layout.html" %}
+{% extends "app1/layout.html" %}
 {% block body %}
 
+<script>
+  document.title = "file upload";
+</script>
 
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4" align=center>
         <br>
-
           <form method="POST"  enctype="multipart/form-data" style = "max-width: 700px; margin: 10px;" >
             {% csrf_token %}
             {{ form }}
@@ -30,6 +32,14 @@
   </div>
 </div> 
 
+  <!-- Footer -->
 
+    <footer class="footer mt-auto py-3 bg-body-tertiary border-top">
+        <div class="container text-center">
+            <span class="text-muted">
+                &copy; 2025 Demo Web Page. All Rights Reserved.
+            </span>
+        </div>
+    </footer>
 
 {% endblock %}

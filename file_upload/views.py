@@ -11,7 +11,7 @@ from django.urls import reverse
 # Create your views here.
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
-# from .forms import csv_upload_form
+from .forms import csv_upload_form
 
 def file_upload_home(request):
         # # print()
@@ -20,10 +20,14 @@ def file_upload_home(request):
         else:
                 try:
                         # form = csv_upload_form()
-                        return render(request, 'table_file_upload/index.html', {
+                        return render(request, 'file_upload/index.html', {
                         'var1': 'var_from_front',
-
+                        'form': csv_upload_form,
                         })
                 except:
                         print('--->- def index exception')
-                        return render(request, 'table_file_upload/index.html')
+                        return render(request, 'file_upload/index.html',
+                                      {
+                        'var1': 'var_from_front',
+                        'form': csv_upload_form,
+                        })

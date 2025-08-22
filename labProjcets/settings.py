@@ -23,15 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!zyu28_=$g#hlrfr)(p*1ty(%3@1j#p0@tkmzh6b0x0zz#*@6w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False   # True False
-# DEBUG = True   # True False
+# DEBUG = False   # True False
+DEBUG = True   # True False
 
-# ALLOWED_HOSTS = ["kotebeg.pythonanywhere.com",
-#                 "127.0.0.1",    #to be deleted
-#                 "localhost",]   #to be deleted
+ALLOWED_HOSTS = ["kotebeg.pythonanywhere.com",
+                "127.0.0.1",    #to be deleted
+                "localhost",]   #to be deleted
 
 
-ALLOWED_HOSTS = ["kotebeg.pythonanywhere.com",]
+# ALLOWED_HOSTS = ["kotebeg.pythonanywhere.com",]
 
 # Application definition
 
