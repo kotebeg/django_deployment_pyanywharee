@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-
+from . signal_generator import generate_random_signal_plot
 
 from django.contrib.auth import authenticate, login, logout
 
@@ -19,10 +19,12 @@ def file_upload_home(request):
                 return HttpResponseRedirect(reverse("login"))
         else:
                 try:
+                        plot_for_front = generate_random_signal_plot()
                         # form = csv_upload_form()
                         return render(request, 'file_upload/index.html', {
                         'var1': 'var_from_front',
                         'form': csv_upload_form,
+                        'plot': plot_for_front,
                         })
                 except:
                         print('--->- def index exception')
