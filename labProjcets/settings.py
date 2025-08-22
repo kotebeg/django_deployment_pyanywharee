@@ -31,7 +31,7 @@ DEBUG = False   # True False
 #                 "localhost",]   #to be deleted
 
 
-# ALLOWED_HOSTS = ["kotebeg.pythonanywhere.com",]
+ALLOWED_HOSTS = ["kotebeg.pythonanywhere.com",]
 
 # Application definition
 
