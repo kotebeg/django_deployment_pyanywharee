@@ -1,9 +1,8 @@
 {% extends "app1/layout.html" %}
 {% block body %}
 
-<script>
-  document.title = "file upload";
-</script>
+{% load static %}
+<script src="{% static 'file_upload/js_scripts.js' %}"></script>
 
 <div class="container">
   <div class="row justify-content-center">
@@ -30,8 +29,8 @@
                 Upload
             </button>
 
-            <button type="button" class="btn btn-secondary" style = "margin: 10px; width:150px; height:40px;">
-                                          <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+            <button type="button" class="btn btn-secondary" style = "margin: 10px; width:150px; height:40px;" onclick="dw_get_excel()">
+                                          <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 
                 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
                 {% comment %} <svg height="22px" width="22px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 433.72 433.72" xml:space="preserve" fill="#000000">
@@ -56,6 +55,9 @@
   <!-- Footer -->
 
     <footer class="footer mt-auto py-3 bg-body-tertiary border-top">
+      
+ <a href="{% url 'apps_dashboard' %}" class = "btn btn-secondary" style ="margin-left:10px;">to dashboard</a>
+ 
         <div class="container text-center">
             <span class="text-muted">
                 &copy; 2025 Demo Web Page. All Rights Reserved.
