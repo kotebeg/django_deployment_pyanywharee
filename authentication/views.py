@@ -13,7 +13,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
 def apps_dashboard(request):
         if request.user.is_authenticated:
-                return render(request, 'app1/apps_dashboard.html', {
+                return render(request, 'authentication/apps_dashboard.html', {
                 'var1': 'var_from_front'
                 })
         else:
@@ -41,12 +41,12 @@ def login_view(request):
                         
                         print('----<>',request.user.is_authenticated)
                         # user = authenticate(request, username = usr_nm, password = usr_ps)
-                        return render(request, 'app1/apps_dashboard.html')
+                        return render(request, 'authentication/apps_dashboard.html')
                 else:
                         # print('---> wrong credintionals')
-                        return render(request, "app1/login.html", {
+                        return render(request, "authentication/login.html", {
                         "login_message":"invalid credentials"
                 })
         else:
                 print('-->', request.method)
-                return render(request, 'app1/login.html')
+                return render(request, 'authentication/login.html')

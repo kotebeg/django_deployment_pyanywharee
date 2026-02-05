@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app26',
     'app27',
-    'app1',
+    'authentication',
     'file_upload',
     'table_file_upload',
 ]

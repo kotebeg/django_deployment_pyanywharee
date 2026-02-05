@@ -29,7 +29,7 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 
 ```
 django_deployment_pyanywharee/
-├── app1/                  # Authentication & dashboard
+├── authentication/        # Authentication & dashboard
 ├── app26/                 # Monthly challenges
 ├── app27/                 # Redirect/error handling
 ├── file_upload/           # Signal upload, download & plotting
