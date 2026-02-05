@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 
 
 from django.http import HttpResponseRedirect
@@ -13,40 +14,43 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
 def apps_dashboard(request):
         if request.user.is_authenticated:
-                return render(request, 'authentication/apps_dashboard.html', {
-                'var1': 'var_from_front'
-                })
+                return render(request, 'authentication/apps_dashboard.html')
         else:
                 return HttpResponseRedirect(reverse("login"))
 
+def logout_view(request):
+        logout(request)
+        return HttpResponseRedirect(reverse("login"))
+
 def login_view(request):
         if request.method == "POST":
-                # print('--> POST')
-                # print('-->', request.POST, type(request.POST))
                 username = request.POST['floatingInput_name']
                 password = request.POST['floatingPassword_name']
-                print(username, password)
-                # print('-->', request.POST['floatingInput_name'])
-                # print('-->', request.POST['floatingPassword_name'])
-                user = authenticate(request, username = username, password=password)
+                user = authenticate(request, username=username, password=password)
 
-                login(request, user)
-
-                # print('--->',authenticate(request, username = username, password=password))
-                print('----<user>',request.user, user)
-                print("session key:", request.session.session_key)
-                print("is_authenticated:", request.user.is_authenticated)
-                print("cookies:", request.COOKIES.keys())
                 if user is not None:
-                        
-                        print('----<>',request.user.is_authenticated)
-                        # user = authenticate(request, username = usr_nm, password = usr_ps)
-                        return render(request, 'authentication/apps_dashboard.html')
+                        login(request, user)
+                        return HttpResponseRedirect(reverse("apps_dashboard"))
                 else:
-                        # print('---> wrong credintionals')
                         return render(request, "authentication/login.html", {
-                        "login_message":"invalid credentials"
-                })
+                                "login_message": "invalid credentials"
+                        })
         else:
-                print('-->', request.method)
                 return render(request, 'authentication/login.html')
+
+def register_view(request):
+        if request.method == "POST":
+                form = UserCreationForm(request.POST)
+                if form.is_valid():
+                        user = form.save()
+                        login(request, user)
+                        return HttpResponseRedirect(reverse("apps_dashboard"))
+                else:
+                        return render(request, "authentication/register.html", {
+                                "form": form
+                        })
+        else:
+                form = UserCreationForm()
+                return render(request, "authentication/register.html", {
+                        "form": form
+                })

@@ -8,11 +8,13 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 
 ## Features
 
-- **Authentication** - Login system with Django's built-in auth, session management, and a protected dashboard
+- **Authentication** - Login and registration system with Django's built-in auth, session management, and a protected dashboard
+- **User Registration** - Self-service account creation using Django's `UserCreationForm` with validation and auto-login
 - **Signal Visualization** - Generate random sinusoidal signals with Gaussian noise and render them as interactive Plotly line charts
 - **Excel Upload/Download** - Upload Excel files containing signal data, visualize them, and download results as timestamped `.xlsx` files
 - **Monthly Challenges** - Browse monthly programming challenges with month-based URL routing
-- **Responsive UI** - Bootstrap 5.3 with light/dark theme toggle
+- **Demo Credentials Modal** - One-click demo login with auto-fill credentials
+- **Responsive UI** - Bootstrap 5.3 with light/dark/auto theme toggle
 
 ## Tech Stack
 
@@ -29,7 +31,7 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 
 ```
 django_deployment_pyanywharee/
-├── authentication/        # Authentication & dashboard
+├── authentication/        # Login, registration & dashboard
 ├── app26/                 # Monthly challenges
 ├── app27/                 # Redirect/error handling
 ├── file_upload/           # Signal upload, download & plotting
@@ -41,6 +43,7 @@ django_deployment_pyanywharee/
 ├── templates/             # Global templates (base.html, 404.html)
 ├── static/                # Global static files
 ├── manage.py
+├── setup.sh              # Automated setup script
 └── db.sqlite3
 ```
 
@@ -51,7 +54,20 @@ django_deployment_pyanywharee/
 - Python 3.10+
 - pip
 
-### Installation
+### Quick Start (using setup script)
+
+```bash
+git clone <repository-url>
+cd django_deployment_pyanywharee
+chmod +x setup.sh
+./setup.sh
+source venv/bin/activate
+python manage.py runserver
+```
+
+Visit [http://127.0.0.1:8000/login/](http://127.0.0.1:8000/login/)
+
+### Manual Installation
 
 1. **Clone the repository**
    ```bash
@@ -101,6 +117,8 @@ django_deployment_pyanywharee/
 | Path                | Description                       |
 |---------------------|-----------------------------------|
 | `/login/`           | Login page                        |
+| `/login/register`   | User registration page            |
+| `/login/logout`     | Logout (redirects to login)       |
 | `/login/apps_dashboard` | App dashboard (auth required) |
 | `/file_upload/`     | Signal upload & visualization     |
 | `/file_upload/get_excel` | Download signal data as Excel |
