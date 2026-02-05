@@ -15,6 +15,7 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 - **Monthly Challenges** - Browse monthly programming challenges with month-based URL routing
 - **Demo Credentials Modal** - One-click demo login with auto-fill credentials
 - **Responsive UI** - Bootstrap 5.3 with light/dark/auto theme toggle
+- **Test Suite** - 28 unit tests covering authentication, registration, file upload, signal generation, and URL routing
 
 ## Tech Stack
 
@@ -25,6 +26,7 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 | Frontend       | Bootstrap 5.3, Django Templates     |
 | Visualization  | Plotly Express                      |
 | Data Processing| pandas, NumPy, openpyxl             |
+| Testing        | Django TestCase (28 tests)          |
 | Deployment     | PythonAnywhere (WSGI)               |
 
 ## Project Structure
@@ -125,6 +127,40 @@ Visit [http://127.0.0.1:8000/login/](http://127.0.0.1:8000/login/)
 | `/app26/`           | Monthly challenges index          |
 | `/app26/<month>`    | Challenge for a specific month    |
 | `/admin/`           | Django admin panel                |
+
+## Testing
+
+Run the full test suite (28 tests):
+
+```bash
+python manage.py test
+```
+
+Run tests by app:
+
+```bash
+python manage.py test authentication
+python manage.py test file_upload
+```
+
+Run a specific test class or method:
+
+```bash
+python manage.py test authentication.tests.DashboardTests
+python manage.py test authentication.tests.LoginPageTests.test_login_valid_credentials
+```
+
+### Test Coverage
+
+| App              | Test Class            | Tests | What's Covered                                              |
+|------------------|-----------------------|-------|-------------------------------------------------------------|
+| `authentication` | `LoginPageTests`      | 4     | Page load, valid/invalid login, URL resolution              |
+| `authentication` | `RegisterPageTests`   | 6     | Page load, valid registration, auto-login, password mismatch, duplicate username, URL resolution |
+| `authentication` | `DashboardTests`      | 3     | Auth required, authenticated access, URL resolution         |
+| `authentication` | `LogoutTests`         | 3     | Redirect to login, session cleared, URL resolution          |
+| `file_upload`    | `SignalGeneratorTests` | 4    | DataFrame output, column names, row count, Plotly HTML      |
+| `file_upload`    | `FileUploadViewTests` | 5     | Auth required (GET/POST), plot rendering, Excel upload, URL resolution |
+| `file_upload`    | `ExcelDownloadTests`  | 3     | Content type, file attachment, sheet data, URL resolution   |
 
 ## Deployment (PythonAnywhere)
 
