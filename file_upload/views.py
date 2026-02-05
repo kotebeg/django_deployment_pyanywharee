@@ -35,11 +35,9 @@ class ProfileView(View):
                         excel_upload = excel_upload_form()
                         # global plot_for_front
                         # global df_data
-                        # self.df_data = generate_random_sequence()
+                        self.df_data = generate_random_sequence()
                         request.session['df_data'] = generate_random_sequence().to_json()
-                        plot_for_front = generate_random_signal_plot(pd.read_json(request.session['df_data']))
-
-                        # print('--->Globals',globals())
+                        plot_for_front = generate_random_signal_plot(self.df_data)
 
                         return render(request, 'file_upload/index.html', {
                         'var1': 'var_from_front',
