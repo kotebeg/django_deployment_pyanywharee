@@ -21,5 +21,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', include('authentication.urls')),
     path('signal_viz/', include('signal_viz.urls')),
-    path('tfu/', include('table_file_upload.urls'))
 ]

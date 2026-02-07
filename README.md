@@ -37,7 +37,6 @@ django_deployment_pyanywharee/
 │   ├── views.py           # ProfileView (upload/plot), get_excel (download)
 │   ├── forms.py           # Excel upload form
 │   └── signal_generator.py# Random signal generation & Plotly chart
-├── table_file_upload/     # Table file upload (stub)
 ├── labProjcets/           # Django project config (settings, urls, wsgi)
 ├── templates/             # Global templates (base.html, 404.html)
 ├── static/                # Global static files

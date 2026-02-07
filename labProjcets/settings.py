@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'signal_viz',
-    'table_file_upload',
 ]
 
 MIDDLEWARE = [
