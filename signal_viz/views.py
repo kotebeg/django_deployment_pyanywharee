@@ -39,7 +39,7 @@ class ProfileView(View):
                         request.session['df_data'] = generate_random_sequence().to_json()
                         plot_for_front = generate_random_signal_plot(self.df_data)
 
-                        return render(request, 'file_upload/index.html', {
+                        return render(request, 'signal_viz/index.html', {
                         'var1': 'var_from_front',
                         'form': excel_upload,
                         'plot': plot_for_front,
@@ -68,7 +68,7 @@ class ProfileView(View):
                         # if uploaded_excel.is_valid():
                         #         request.session['file_uploaded'] = True
 
-                        return render(request, 'file_upload/index.html', {
+                        return render(request, 'signal_viz/index.html', {
                         'var1': 'var_from_front',
                         'form': excel_upload,
                         'plot': plot_for_front_from_imported_data,

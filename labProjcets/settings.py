@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
-    'file_upload',
+    'signal_viz',
     'table_file_upload',
 ]
 

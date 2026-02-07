@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 import pandas as pd
 import openpyxl
 
-from file_upload import views
-from file_upload.signal_generator import (
+from signal_viz import views
+from signal_viz.signal_generator import (
     generate_random_sequence,
     generate_random_signal_plot,
 )
@@ -34,30 +34,30 @@ class SignalGeneratorTests(TestCase):
         self.assertIn("plotly", html.lower())
 
 
-class FileUploadViewTests(TestCase):
+class SignalVizViewTests(TestCase):
     def setUp(self):
         self.client = Client()
-        self.upload_url = reverse("file_upload_home")
+        self.upload_url = reverse("signal_viz_home")
         self.user = User.objects.create_user(
             username="testuser", password="testpass123"
         )
 
-    def test_file_upload_requires_auth(self):
+    def test_signal_viz_requires_auth(self):
         response = self.client.get(self.upload_url)
         self.assertRedirects(response, reverse("login"))
 
-    def test_file_upload_get_renders_plot(self):
+    def test_signal_viz_get_renders_plot(self):
         self.client.login(username="testuser", password="testpass123")
         response = self.client.get(self.upload_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "file_upload/index.html")
+        self.assertTemplateUsed(response, "signal_viz/index.html")
         self.assertIn("plot", response.context)
 
-    def test_file_upload_post_requires_auth(self):
+    def test_signal_viz_post_requires_auth(self):
         response = self.client.post(self.upload_url)
         self.assertRedirects(response, reverse("login"))
 
-    def test_file_upload_post_valid_excel(self):
+    def test_signal_viz_post_valid_excel(self):
         self.client.login(username="testuser", password="testpass123")
 
         wb = openpyxl.Workbook()
@@ -79,8 +79,8 @@ class FileUploadViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("plot", response.context)
 
-    def test_file_upload_url_resolves(self):
-        view = resolve("/file_upload/")
+    def test_signal_viz_url_resolves(self):
+        view = resolve("/signal_viz/")
         self.assertEqual(view.func.view_class, views.ProfileView)
 
 
@@ -94,7 +94,7 @@ class ExcelDownloadTests(TestCase):
     def test_get_excel_returns_xlsx(self):
         self.client.login(username="testuser", password="testpass123")
         # Hit the upload page first to populate session with df_data
-        self.client.get(reverse("file_upload_home"))
+        self.client.get(reverse("signal_viz_home"))
 
         response = self.client.get(reverse("get_excel"))
         self.assertEqual(response.status_code, 200)
@@ -104,7 +104,7 @@ class ExcelDownloadTests(TestCase):
 
     def test_get_excel_contains_data(self):
         self.client.login(username="testuser", password="testpass123")
-        self.client.get(reverse("file_upload_home"))
+        self.client.get(reverse("signal_viz_home"))
 
         response = self.client.get(reverse("get_excel"))
         wb = openpyxl.load_workbook(BytesIO(response.content))
@@ -113,5 +113,5 @@ class ExcelDownloadTests(TestCase):
         self.assertGreater(ws.max_row, 0)
 
     def test_get_excel_url_resolves(self):
-        view = resolve("/file_upload/get_excel")
+        view = resolve("/signal_viz/get_excel")
         self.assertEqual(view.func, views.get_excel)
