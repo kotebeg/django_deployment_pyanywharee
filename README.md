@@ -15,6 +15,7 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 - **Demo Credentials Modal** - One-click demo login with auto-fill credentials
 - **Responsive UI** - Bootstrap 5.3 with light/dark/auto theme toggle
 - **Test Suite** - 28 unit tests covering authentication, registration, signal visualization, and URL routing
+- **Secure Setup** - Unique SECRET_KEY generated automatically for each installation
 
 ## Tech Stack
 
@@ -37,7 +38,7 @@ django_deployment_pyanywharee/
 │   ├── views.py           # ProfileView (upload/plot), get_excel (download)
 │   ├── forms.py           # Excel upload form
 │   └── signal_generator.py# Random signal generation & Plotly chart
-├── labProjcets/           # Django project config (settings, urls, wsgi)
+├── config/           # Django project config (settings, urls, wsgi)
 ├── templates/             # Global templates (base.html, 404.html)
 ├── static/                # Global static files
 ├── manage.py
@@ -82,25 +83,23 @@ Visit [http://127.0.0.1:8000/login/](http://127.0.0.1:8000/login/)
 
 3. **Install dependencies**
    ```bash
-   pip install django==5.0.3 pandas numpy plotly openpyxl
+   pip install django==5.0.3 pandas numpy plotly openpyxl python-dotenv
    ```
 
-4. **Run migrations**
+4. **Generate unique SECRET_KEY**
+   ```bash
+   python -c "from django.core.management.utils import get_random_secret_key; print(f'SECRET_KEY={get_random_secret_key()}')" > .env
+   echo "DEBUG=True" >> .env
+   ```
+
+5. **Run migrations**
    ```bash
    python manage.py migrate
    ```
 
-5. **Create a superuser** (or use the demo account)
+6. **Create a superuser** (or use the demo account)
    ```bash
    python manage.py createsuperuser
-   ```
-
-6. **Update settings for local development**
-
-   In `labProjcets/settings.py`, set:
-   ```python
-   DEBUG = True
-   ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
    ```
 
 7. **Run the development server**
@@ -160,7 +159,7 @@ python manage.py test authentication.tests.LoginPageTests.test_login_valid_crede
 
 1. Upload the project to PythonAnywhere
 2. Set up a virtual environment and install dependencies
-3. Configure the WSGI file to point to `labProjcets.wsgi:application`
+3. Configure the WSGI file to point to `config.wsgi:application`
 4. Set `ALLOWED_HOSTS` to your PythonAnywhere domain
 5. Collect static files:
    ```bash
