@@ -1,6 +1,6 @@
 # Django Deployment - PythonAnywhere
 
-A multi-app Django web application deployed on PythonAnywhere, featuring signal visualization with interactive Plotly charts, Excel file upload/download, and a monthly challenges module.
+A multi-app Django web application deployed on PythonAnywhere, featuring signal visualization with interactive Plotly charts and Excel file upload/download functionality.
 
 **Live Demo:** [kotebeg.pythonanywhere.com/login/](https://kotebeg.pythonanywhere.com/login/)
 
@@ -12,10 +12,9 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 - **User Registration** - Self-service account creation using Django's `UserCreationForm` with validation and auto-login
 - **Signal Visualization** - Generate random sinusoidal signals with Gaussian noise and render them as interactive Plotly line charts
 - **Excel Upload/Download** - Upload Excel files containing signal data, visualize them, and download results as timestamped `.xlsx` files
-- **Monthly Challenges** - Browse monthly programming challenges with month-based URL routing
 - **Demo Credentials Modal** - One-click demo login with auto-fill credentials
 - **Responsive UI** - Bootstrap 5.3 with light/dark/auto theme toggle
-- **Test Suite** - 28 unit tests covering authentication, registration, file upload, signal generation, and URL routing
+- **Test Suite** - 28 unit tests covering authentication, registration, signal visualization, and URL routing
 
 ## Tech Stack
 
@@ -34,9 +33,7 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 ```
 django_deployment_pyanywharee/
 ├── authentication/        # Login, registration & dashboard
-├── app26/                 # Monthly challenges
-├── app27/                 # Redirect/error handling
-├── file_upload/           # Signal upload, download & plotting
+├── signal_viz/            # Signal visualization & Excel processing
 │   ├── views.py           # ProfileView (upload/plot), get_excel (download)
 │   ├── forms.py           # Excel upload form
 │   └── signal_generator.py# Random signal generation & Plotly chart
@@ -45,7 +42,7 @@ django_deployment_pyanywharee/
 ├── templates/             # Global templates (base.html, 404.html)
 ├── static/                # Global static files
 ├── manage.py
-├── setup.sh              # Automated setup script
+├── setup.sh               # Automated setup script
 └── db.sqlite3
 ```
 
@@ -116,17 +113,15 @@ Visit [http://127.0.0.1:8000/login/](http://127.0.0.1:8000/login/)
 
 ## URL Routes
 
-| Path                | Description                       |
-|---------------------|-----------------------------------|
-| `/login/`           | Login page                        |
-| `/login/register`   | User registration page            |
-| `/login/logout`     | Logout (redirects to login)       |
-| `/login/apps_dashboard` | App dashboard (auth required) |
-| `/file_upload/`     | Signal upload & visualization     |
-| `/file_upload/get_excel` | Download signal data as Excel |
-| `/app26/`           | Monthly challenges index          |
-| `/app26/<month>`    | Challenge for a specific month    |
-| `/admin/`           | Django admin panel                |
+| Path                     | Description                       |
+|--------------------------|-----------------------------------|
+| `/login/`                | Login page                        |
+| `/login/register`        | User registration page            |
+| `/login/logout`          | Logout (redirects to login)       |
+| `/login/apps_dashboard`  | App dashboard (auth required)     |
+| `/signal_viz/`           | Signal upload & visualization     |
+| `/signal_viz/get_excel`  | Download signal data as Excel     |
+| `/admin/`                | Django admin panel                |
 
 ## Testing
 
@@ -140,7 +135,7 @@ Run tests by app:
 
 ```bash
 python manage.py test authentication
-python manage.py test file_upload
+python manage.py test signal_viz
 ```
 
 Run a specific test class or method:
@@ -158,9 +153,9 @@ python manage.py test authentication.tests.LoginPageTests.test_login_valid_crede
 | `authentication` | `RegisterPageTests`   | 6     | Page load, valid registration, auto-login, password mismatch, duplicate username, URL resolution |
 | `authentication` | `DashboardTests`      | 3     | Auth required, authenticated access, URL resolution         |
 | `authentication` | `LogoutTests`         | 3     | Redirect to login, session cleared, URL resolution          |
-| `file_upload`    | `SignalGeneratorTests` | 4    | DataFrame output, column names, row count, Plotly HTML      |
-| `file_upload`    | `FileUploadViewTests` | 5     | Auth required (GET/POST), plot rendering, Excel upload, URL resolution |
-| `file_upload`    | `ExcelDownloadTests`  | 3     | Content type, file attachment, sheet data, URL resolution   |
+| `signal_viz`     | `SignalGeneratorTests`| 4     | DataFrame output, column names, row count, Plotly HTML      |
+| `signal_viz`     | `SignalVizViewTests`  | 5     | Auth required (GET/POST), plot rendering, Excel upload, URL resolution |
+| `signal_viz`     | `ExcelDownloadTests`  | 3     | Content type, file attachment, sheet data, URL resolution   |
 
 ## Deployment (PythonAnywhere)
 
