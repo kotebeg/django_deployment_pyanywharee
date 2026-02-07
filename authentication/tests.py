@@ -134,3 +134,48 @@ class LogoutTests(TestCase):
     def test_logout_url_resolves_to_view(self):
         view = resolve("/login/logout")
         self.assertEqual(view.func, views.logout_view)
+
+
+class PasswordResetTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(
+            username="testuser",
+            email="testuser@example.com",
+            password="testpass123"
+        )
+
+    def test_password_reset_page_loads(self):
+        response = self.client.get(reverse("password_reset"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "authentication/password_reset_form.html")
+
+    def test_password_reset_sends_email(self):
+        from django.core import mail
+        response = self.client.post(reverse("password_reset"), {
+            "email": "testuser@example.com"
+        })
+        self.assertRedirects(response, reverse("password_reset_done"))
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertIn("testuser@example.com", mail.outbox[0].to)
+
+    def test_password_reset_invalid_email_still_redirects(self):
+        # Security: don't reveal if email exists
+        response = self.client.post(reverse("password_reset"), {
+            "email": "nonexistent@example.com"
+        })
+        self.assertRedirects(response, reverse("password_reset_done"))
+
+    def test_password_reset_done_page_loads(self):
+        response = self.client.get(reverse("password_reset_done"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "authentication/password_reset_done.html")
+
+    def test_password_reset_complete_page_loads(self):
+        response = self.client.get(reverse("password_reset_complete"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "authentication/password_reset_complete.html")
+
+    def test_password_reset_url_resolves(self):
+        view = resolve("/login/password_reset/")
+        self.assertEqual(view.url_name, "password_reset")
