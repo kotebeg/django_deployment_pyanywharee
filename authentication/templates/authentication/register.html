@@ -27,6 +27,10 @@
             <label for="floatingUsername">Username</label>
           </div>
           <div class="form-floating mb-2">
+            <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" id="floatingEmail" placeholder="email@example.com" name="email" value="{{ form.email.value|default:'' }}">
+            <label for="floatingEmail">Email</label>
+          </div>
+          <div class="form-floating mb-2">
             <input type="password" class="form-control {% if form.password1.errors %}is-invalid{% endif %}" id="floatingPassword1" placeholder="Password" name="password1">
             <label for="floatingPassword1">Password</label>
           </div>

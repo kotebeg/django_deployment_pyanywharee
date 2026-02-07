@@ -50,15 +50,19 @@ class RegisterPageTests(TestCase):
     def test_register_valid_data(self):
         response = self.client.post(self.register_url, {
             "username": "newuser",
+            "email": "newuser@example.com",
             "password1": "SecurePass789!",
             "password2": "SecurePass789!",
         })
         self.assertRedirects(response, reverse("apps_dashboard"))
         self.assertTrue(User.objects.filter(username="newuser").exists())
+        user = User.objects.get(username="newuser")
+        self.assertEqual(user.email, "newuser@example.com")
 
     def test_register_auto_logs_in(self):
         self.client.post(self.register_url, {
             "username": "newuser",
+            "email": "newuser@example.com",
             "password1": "SecurePass789!",
             "password2": "SecurePass789!",
         })
@@ -68,6 +72,7 @@ class RegisterPageTests(TestCase):
     def test_register_password_mismatch(self):
         response = self.client.post(self.register_url, {
             "username": "newuser",
+            "email": "newuser@example.com",
             "password1": "SecurePass789!",
             "password2": "DifferentPass!",
         })
@@ -79,6 +84,7 @@ class RegisterPageTests(TestCase):
         User.objects.create_user(username="existing", password="testpass123")
         response = self.client.post(self.register_url, {
             "username": "existing",
+            "email": "existing@example.com",
             "password1": "SecurePass789!",
             "password2": "SecurePass789!",
         })

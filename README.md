@@ -9,7 +9,7 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 ## Features
 
 - **Authentication** - Login and registration system with Django's built-in auth, session management, and a protected dashboard
-- **User Registration** - Self-service account creation using Django's `UserCreationForm` with validation and auto-login
+- **User Registration** - Self-service account creation with email using custom `CustomUserCreationForm`, validation, and auto-login
 - **Password Reset** - Secure password reset flow with email verification (console backend for demo, SMTP-ready for production)
 - **Signal Visualization** - Generate random sinusoidal signals with Gaussian noise and render them as interactive Plotly line charts
 - **Excel Upload/Download** - Upload Excel files containing signal data, visualize them, and download results as timestamped `.xlsx` files
@@ -34,7 +34,8 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 
 ```
 django_deployment_pyanywharee/
-├── authentication/        # Login, registration & dashboard
+├── authentication/        # Login, registration, password reset & dashboard
+│   └── forms.py           # CustomUserCreationForm with email field
 ├── signal_viz/            # Signal visualization & Excel processing
 │   ├── views.py           # ProfileView (upload/plot), get_excel (download)
 │   ├── forms.py           # Excel upload form
