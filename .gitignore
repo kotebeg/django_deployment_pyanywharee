@@ -45,3 +45,5 @@ build/
 
 # Misc
 scripts.sh
+
+CONVERSATION_LOG.md

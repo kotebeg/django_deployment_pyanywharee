@@ -16,6 +16,7 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 - **Demo Credentials Modal** - One-click demo login with auto-fill credentials
 - **Responsive UI** - Bootstrap 5.3 with light/dark/auto theme toggle
 - **Test Suite** - 34 unit tests covering authentication, registration, password reset, signal visualization, and URL routing
+- **Dockerized Database** - PostgreSQL 15 running in Docker with persistent volumes
 - **Secure Setup** - Unique SECRET_KEY generated automatically for each installation
 
 ## Tech Stack
@@ -23,11 +24,12 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 | Layer          | Technology                          |
 |----------------|-------------------------------------|
 | Framework      | Django 5.0.3                        |
-| Database       | SQLite3                             |
+| Database       | PostgreSQL 15 (Docker)              |
 | Frontend       | Bootstrap 5.3, Django Templates     |
 | Visualization  | Plotly Express                      |
 | Data Processing| pandas, NumPy, openpyxl             |
 | Testing        | Django TestCase (34 tests)          |
+| Containerization| Docker, Docker Compose             |
 | Deployment     | PythonAnywhere (WSGI)               |
 
 ## Project Structure
@@ -43,9 +45,9 @@ django_deployment_pyanywharee/
 ├── config/           # Django project config (settings, urls, wsgi)
 ├── templates/             # Global templates (base.html, 404.html)
 ├── static/                # Global static files
+├── docker-compose.yml     # PostgreSQL container config
 ├── manage.py
-├── setup.sh               # Automated setup script
-└── db.sqlite3
+└── setup.sh               # Automated setup script (Docker + Django)
 ```
 
 ## Getting Started
@@ -53,9 +55,11 @@ django_deployment_pyanywharee/
 ### Prerequisites
 
 - Python 3.10+
-- pip
+- Docker & Docker Compose
 
 ### Quick Start (using setup script)
+
+The setup script automatically checks/installs Docker, starts PostgreSQL, creates a virtual environment, and runs migrations:
 
 ```bash
 git clone <repository-url>
@@ -76,40 +80,58 @@ Visit [http://127.0.0.1:8000/login/](http://127.0.0.1:8000/login/)
    cd django_deployment_pyanywharee
    ```
 
-2. **Create and activate a virtual environment**
+2. **Start PostgreSQL with Docker**
+   ```bash
+   docker compose up -d
+   ```
+
+3. **Create and activate a virtual environment**
    ```bash
    python -m venv venv
-   source venv/bin/activate   # Linux/macOS
-   venv\Scripts\activate      # Windows
+   source venv/bin/activate
    ```
 
-3. **Install dependencies**
+4. **Install dependencies**
    ```bash
-   pip install django==5.0.3 pandas numpy plotly openpyxl python-dotenv
+   pip install django==5.0.3 pandas numpy plotly openpyxl python-dotenv psycopg2-binary
    ```
 
-4. **Generate unique SECRET_KEY**
+5. **Generate `.env` configuration**
    ```bash
    python -c "from django.core.management.utils import get_random_secret_key; print(f'SECRET_KEY={get_random_secret_key()}')" > .env
    echo "DEBUG=True" >> .env
+   echo "DB_NAME=django_db" >> .env
+   echo "DB_USER=django_user" >> .env
+   echo "DB_PASSWORD=django_pass" >> .env
+   echo "DB_HOST=localhost" >> .env
+   echo "DB_PORT=5432" >> .env
    ```
 
-5. **Run migrations**
+6. **Run migrations**
    ```bash
    python manage.py migrate
    ```
 
-6. **Create a superuser** (or use the demo account)
+7. **Create a superuser** (or use the demo account)
    ```bash
    python manage.py createsuperuser
    ```
 
-7. **Run the development server**
+8. **Run the development server**
    ```bash
    python manage.py runserver
    ```
 
    Visit [http://127.0.0.1:8000/login/](http://127.0.0.1:8000/login/)
+
+### Docker Commands
+
+```bash
+docker compose up -d       # Start PostgreSQL
+docker compose stop        # Stop PostgreSQL (data preserved)
+docker compose down        # Stop and remove container (data preserved)
+docker compose down -v     # Stop, remove container AND delete data
+```
 
 ## URL Routes
 
