@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', include('authentication.urls')),
     path('signal_viz/', include('signal_viz.urls')),
+    path('api/v1/', include('signal_viz.api_urls')),
 ]

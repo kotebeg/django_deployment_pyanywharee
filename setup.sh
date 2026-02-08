@@ -40,7 +40,7 @@ source venv/bin/activate
 
 # Step 5: Install dependencies
 echo "[5/7] Installing dependencies..."
-pip install django==5.0.3 pandas numpy plotly openpyxl python-dotenv psycopg2-binary
+pip install django==5.0.3 pandas numpy plotly openpyxl python-dotenv psycopg2-binary djangorestframework
 
 # Step 6: Generate .env with SECRET_KEY and DB config
 echo "[6/7] Generating configuration..."
@@ -85,8 +85,8 @@ fi
 echo ""
 echo "=== Setup complete ==="
 echo "Run the server with:"
-echo "  source venv/bin/activate"
-echo "  python manage.py runserver"
+echo "source venv/bin/activate"
+echo "python manage.py runserver"
 echo ""
 echo "Then visit: http://127.0.0.1:8000/login/"
 echo ""
