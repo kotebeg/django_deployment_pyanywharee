@@ -1,6 +1,6 @@
-# Django Deployment - PythonAnywhere
+# Django Multi-App
 
-A multi-app Django web application deployed on PythonAnywhere, featuring signal visualization with interactive Plotly charts and Excel file upload/download functionality.
+A multi-app Django web application featuring authentication, signal visualization with interactive Plotly charts, and Excel file upload/download functionality.
 
 **Live Demo:** [kotebeg.pythonanywhere.com/login/](https://kotebeg.pythonanywhere.com/login/)
 
@@ -35,7 +35,7 @@ A multi-app Django web application deployed on PythonAnywhere, featuring signal 
 ## Project Structure
 
 ```
-django_deployment_pyanywharee/
+django-multi-app/
 ├── authentication/        # Login, registration, password reset & dashboard
 │   └── forms.py           # CustomUserCreationForm with email field
 ├── signal_viz/            # Signal visualization & Excel processing
@@ -63,7 +63,7 @@ The setup script automatically checks/installs Docker, starts PostgreSQL, create
 
 ```bash
 git clone <repository-url>
-cd django_deployment_pyanywharee
+cd django-multi-app
 chmod +x setup.sh
 ./setup.sh
 source venv/bin/activate
@@ -77,7 +77,7 @@ Visit [http://127.0.0.1:8000/login/](http://127.0.0.1:8000/login/)
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd django_deployment_pyanywharee
+   cd django-multi-app
    ```
 
 2. **Start PostgreSQL with Docker**
